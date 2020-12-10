@@ -88,7 +88,7 @@ public class TableViewController implements Initializable {
 
         tableView.getItems().addAll(callJsonFile());
 
-        rowsInTableLabel.setText(String.valueOf(tableView.getItems().size()));
+        updateLabels();
     }
 
     public Customer[] callJsonFile(){
@@ -107,5 +107,7 @@ public class TableViewController implements Initializable {
         return null;
     }
 
-
+    public void updateLabels(){
+        rowsInTableLabel.setText(String.valueOf(tableView.getItems().size()));
+    }
 }

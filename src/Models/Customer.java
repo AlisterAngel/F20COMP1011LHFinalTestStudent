@@ -6,9 +6,6 @@ package Models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public class Customer {
     @SerializedName("id")
     private Integer id;
@@ -18,7 +15,8 @@ public class Customer {
     private String lastName;
     @SerializedName("phoneNumber")
     private String phoneNumber;
-    private String totalPurchased;
+    private Double totalPurchased;
+    private String totalPurchasedStr;
     @SerializedName("purchases")
     private Product[] purchased;
 
@@ -71,8 +69,12 @@ public class Customer {
         this.purchased = purchased;
     }
 
-    public String getTotalPurchased() {
+    public Double getTotalPurchasedStr() {
         return totalPurchased;
+    }
+
+    public String getTotalPurchased() {
+        return totalPurchasedStr;
     }
 
     public void setTotalPurchased() {
@@ -85,6 +87,26 @@ public class Customer {
         total = twoDecCheck / 100;
         String toStr = "$" + total;
 
-        this.totalPurchased = toStr;
+        this.totalPurchased = total;
+        this.totalPurchasedStr = toStr;
+    }
+
+    public boolean saveMoreThanFive(){
+        double total = 0;
+        double reg = 0;
+        double sales = 0;
+        for (Product item: this.purchased) {
+            reg += item.getRegularPrice();
+        }
+
+        for (Product item: this.purchased) {
+            sales += item.getSalesPrice();
+        }
+        total = reg - sales;
+
+        if(total >= 5) {
+            return true;
+        }
+        return false;
     }
 }
