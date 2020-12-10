@@ -1,15 +1,23 @@
 package Controllers;
 
 import Models.Customer;
+import Models.JsonReader;
 import Models.Product;
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 
-public class TableViewController {
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class TableViewController implements Initializable {
     @FXML
     private Label saleLabel;
 
@@ -62,5 +70,21 @@ public class TableViewController {
     private void loadAllCustomers()
     {
         System.out.println("called method loadAllCustomers");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try (
+            FileReader fileReader = new FileReader("customers.json");
+            JsonReader jsonReader = new JsonReader(fileReader);
+        )
+        {
+            Gson gson = new Gson();
+            Customer customers = gson.fromJson(jsonReader, Customer.class);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
