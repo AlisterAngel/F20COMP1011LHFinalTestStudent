@@ -1,11 +1,10 @@
 package Models;
 
 public class Product {
-  private String name;
+  private String name, sku;
   private Double salesPrice, regularPrice;
-  private Integer sku;
 
-  public Product(Integer sku, String name, Double salesPrice, Double regularPrice) {
+  public Product(String sku, String name, Double salesPrice, Double regularPrice) {
     setSku(sku);
     setName(name);
     setSalesPrice(salesPrice);
@@ -36,11 +35,11 @@ public class Product {
     this.regularPrice = regularPrice;
   }
 
-  public Integer getSku() {
+  public String getSku() {
     return sku;
   }
 
-  public void setSku(Integer sku) {
+  public void setSku(String sku) {
     this.sku = sku;
   }
 }
