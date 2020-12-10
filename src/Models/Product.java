@@ -1,3 +1,7 @@
+/*
+ * Riley Bosetti
+ * STN: 1108477
+ * */
 package Models;
 
 public class Product {

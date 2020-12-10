@@ -1,3 +1,8 @@
+/*
+* Riley Bosetti
+* STN: 1108477
+* */
+
 package Controllers;
 
 import Models.Customer;
@@ -78,7 +83,7 @@ public class TableViewController implements Initializable {
         )
         {
             Gson gson = new Gson();
-            Customer customers = gson.fromJson(jsonReader, Customer.class);
+            Customer[] customers = gson.fromJson(jsonReader, Customer[].class);
         }
         catch (Exception e) {
             e.printStackTrace();
