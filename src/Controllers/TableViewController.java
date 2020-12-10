@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.Customer;
-import Models.JsonReader;
 import Models.Product;
 import com.google.gson.Gson;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -75,16 +73,15 @@ public class TableViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try (
-            FileReader fileReader = new FileReader("customers.json");
-            JsonReader jsonReader = new JsonReader(fileReader);
+                FileReader fileReader = new FileReader("customers.json");
+                com.google.gson.stream.JsonReader jsonReader = new com.google.gson.stream.JsonReader(fileReader);
         )
         {
             Gson gson = new Gson();
             Customer customers = gson.fromJson(jsonReader, Customer.class);
         }
-        catch (FileNotFoundException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

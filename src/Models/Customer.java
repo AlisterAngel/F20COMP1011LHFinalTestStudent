@@ -1,13 +1,14 @@
 package Models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Customer {
     private Integer id;
     private String firstName, lastName, phoneNumber;
-    private ArrayList<Product> purchased;
+    private Product[] purchased;
 
-    public Customer(Integer id, String firstName, String lastName, String phoneNumber, ArrayList<Product> purchased) {
+    public Customer(Integer id, String firstName, String lastName, String phoneNumber, Product[] purchased) {
         setId(id);
         setFirstName(firstName);
         setLastName(lastName);
@@ -47,11 +48,11 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Product> getPurchased() {
+    public Product[] getPurchased() {
         return purchased;
     }
 
-    public void setPurchased(ArrayList<Product> purchased) {
+    public void setPurchased(Product[] purchased) {
         this.purchased = purchased;
     }
 }
