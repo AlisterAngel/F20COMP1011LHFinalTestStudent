@@ -11,6 +11,7 @@ public class Customer {
     private Integer id;
     private String firstName, lastName, phoneNumber;
     private Product[] purchased;
+    private Double totalPurchased;
 
     public Customer(Integer id, String firstName, String lastName, String phoneNumber, Product[] purchased) {
         setId(id);
@@ -18,6 +19,7 @@ public class Customer {
         setLastName(lastName);
         setPhoneNumber(phoneNumber);
         setPurchased(purchased);
+        setTotalPurchased();
     }
 
     public Integer getId() {
@@ -58,5 +60,21 @@ public class Customer {
 
     public void setPurchased(Product[] purchased) {
         this.purchased = purchased;
+    }
+
+    public Double getTotalPurchased() {
+        return totalPurchased;
+    }
+
+    public void setTotalPurchased() {
+        double total = 0;
+        for (Product item: this.purchased) {
+            total += item.getSalesPrice();
+        }
+
+        int twoDecCheck = (int)total * 100;
+        total = twoDecCheck / 100;
+
+        this.totalPurchased = total;
     }
 }

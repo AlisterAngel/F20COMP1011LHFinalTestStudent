@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 import java.io.FileReader;
@@ -77,6 +78,18 @@ public class TableViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        callJsonFile();
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<Customer,Integer>("id"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("firstName"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("lastName"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("phoneNumber"));
+        totalPurchaseColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("totalPurchased"));
+
+        tableView.getItems().addAll(callJsonFile());
+    }
+
+    public Customer[] callJsonFile(){
         try (
                 FileReader fileReader = new FileReader("customers.json");
                 com.google.gson.stream.JsonReader jsonReader = new com.google.gson.stream.JsonReader(fileReader);
@@ -84,9 +97,11 @@ public class TableViewController implements Initializable {
         {
             Gson gson = new Gson();
             Customer[] customers = gson.fromJson(jsonReader, Customer[].class);
+            return  customers;
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
