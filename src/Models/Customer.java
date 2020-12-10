@@ -4,12 +4,22 @@
  * */
 package Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Customer {
+    @SerializedName("id")
     private Integer id;
-    private String firstName, lastName, phoneNumber, totalPurchased;
+    @SerializedName("firstName")
+    private String firstName;
+    @SerializedName("lastName")
+    private String lastName;
+    @SerializedName("phoneNumber")
+    private String phoneNumber;
+    private String totalPurchased;
+    @SerializedName("purchases")
     private Product[] purchased;
 
     public Customer(Integer id, String firstName, String lastName, String phoneNumber, Product[] purchased) {

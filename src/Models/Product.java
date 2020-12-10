@@ -4,9 +4,18 @@
  * */
 package Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Product {
-  private String name, sku;
-  private Double salesPrice, regularPrice;
+  @SerializedName("name")
+  private String name;
+  @SerializedName("sku")
+  private String sku;
+  @SerializedName("salePrice")
+  private Double salesPrice;
+  @SerializedName("regularPrice")
+  private Double regularPrice;
+
 
   public Product(String sku, String name, Double salesPrice, Double regularPrice) {
     setSku(sku);
