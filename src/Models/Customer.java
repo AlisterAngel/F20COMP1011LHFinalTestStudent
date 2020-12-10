@@ -8,11 +8,11 @@ public class Customer {
     private ArrayList<Product> purchased;
 
     public Customer(Integer id, String firstName, String lastName, String phoneNumber, ArrayList<Product> purchased) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.purchased = purchased;
+        setId(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPhoneNumber(phoneNumber);
+        setPurchased(purchased);
     }
 
     public Integer getId() {
