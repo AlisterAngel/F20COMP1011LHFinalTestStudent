@@ -9,9 +9,8 @@ import java.util.ArrayList;
 
 public class Customer {
     private Integer id;
-    private String firstName, lastName, phoneNumber;
+    private String firstName, lastName, phoneNumber, totalPurchased;
     private Product[] purchased;
-    private Double totalPurchased;
 
     public Customer(Integer id, String firstName, String lastName, String phoneNumber, Product[] purchased) {
         setId(id);
@@ -62,7 +61,7 @@ public class Customer {
         this.purchased = purchased;
     }
 
-    public Double getTotalPurchased() {
+    public String getTotalPurchased() {
         return totalPurchased;
     }
 
@@ -74,7 +73,8 @@ public class Customer {
 
         int twoDecCheck = (int)total * 100;
         total = twoDecCheck / 100;
+        String toStr = "$" + total;
 
-        this.totalPurchased = total;
+        this.totalPurchased = toStr;
     }
 }

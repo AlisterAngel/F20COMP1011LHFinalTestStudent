@@ -87,6 +87,8 @@ public class TableViewController implements Initializable {
         totalPurchaseColumn.setCellValueFactory(new PropertyValueFactory<Customer,String>("totalPurchased"));
 
         tableView.getItems().addAll(callJsonFile());
+
+        rowsInTableLabel.setText(String.valueOf(tableView.getItems().size()));
     }
 
     public Customer[] callJsonFile(){
