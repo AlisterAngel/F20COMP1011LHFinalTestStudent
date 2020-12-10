@@ -19,6 +19,7 @@ public class Customer {
     private String totalPurchasedStr;
     @SerializedName("purchases")
     private Product[] purchased;
+    private Double regularPrice, salePrice;
 
     public Customer(Integer id, String firstName, String lastName, String phoneNumber, Product[] purchased) {
         setId(id);
@@ -27,6 +28,8 @@ public class Customer {
         setPhoneNumber(phoneNumber);
         setPurchased(purchased);
         setTotalPurchased();
+        setRegularPrice();
+        setSalePrice();
     }
 
     public Integer getId() {
@@ -91,20 +94,25 @@ public class Customer {
         this.totalPurchasedStr = toStr;
     }
 
-    public boolean saveMoreThanFive(){
-        double total = 0;
+    public void setRegularPrice(){
         double reg = 0;
-        double sales = 0;
         for (Product item: this.purchased) {
             reg += item.getRegularPrice();
         }
+        this.regularPrice = reg;
+    }
+
+    public void setSalePrice(){
+        double sales = 0;
 
         for (Product item: this.purchased) {
             sales += item.getSalesPrice();
         }
-        total = reg - sales;
+        this.salePrice = sales;
+    }
 
-        if(total >= 5) {
+    public boolean saveMoreThanFive(){
+        if(this.regularPrice - this.salePrice >= 5) {
             return true;
         }
         return false;

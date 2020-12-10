@@ -109,5 +109,6 @@ public class TableViewController implements Initializable {
 
     public void updateLabels(){
         rowsInTableLabel.setText(String.valueOf(tableView.getItems().size()));
+
     }
 }
