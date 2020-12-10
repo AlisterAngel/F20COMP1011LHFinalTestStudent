@@ -1,0 +1,16 @@
+.main {
+  font-family: "Times New Roman", Times, serif;
+  -fx-background-color: rgb(14, 19, 92);
+}
+
+.label{
+  -fx-text-fill: white;
+}
+
+.column-header{
+  -fx-text-fill: rgb(14, 19, 92);
+}
+
+.img{
+  -fx-background-color: rgb(255, 165, 0);
+}
